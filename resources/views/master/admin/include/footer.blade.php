@@ -25,6 +25,8 @@
 <!-- include FilePond plugins -->
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
 
+<script src="{{ asset('filepond/dist/filepond-plugin-get-file.min.js') }}"></script>
+
 <!-- include FilePond jQuery adapter -->
 <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 

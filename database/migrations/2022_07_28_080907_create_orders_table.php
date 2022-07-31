@@ -19,7 +19,9 @@ class CreateOrdersTable extends Migration
             $table->string('seats');
             $table->string('hours');
             $table->enum('status',['booking','need_confirmation','payment','done'])->default('booking');
+            $table->text('file_pembayaran');
             $table->integer('user_id');
+            $table->integer('table_id');
             $table->timestamps();
             $table->softDeletes();
         });

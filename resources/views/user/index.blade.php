@@ -2,6 +2,15 @@
 
 @section('title','HOME')
 
+@section('css')
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+
+{{-- datepicker --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css" integrity="sha512-2e0Kl/wKgOUm/I722SOPMtmphkIjECJFpJrTRRyL8gjJSJIP2VofmEbqyApMaMfFhU727K3voz0e5EgE3Zf2Dg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
 @section('content')
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
@@ -28,9 +37,15 @@
                     </svg>
                     <div class="card-body">
                         <div class="d-flex justify-content-center align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="cekAuthUser('{{ $table->id }}')">Book</button>
-                            </div>
+                            @if ($table->Order == null || $table->Order->status == 'done' )
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="cekAuthUser('{{ $table->id }}')">Book</button>
+                                </div>
+                            @else
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-danger">NOT AVAILABLE</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -61,13 +76,17 @@
                     <div class="tab-content py-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="step1">
                             <h4>Table</h4>
+                            <div class="mb-3" hidden>
+                                <label for="table_code">Table ID</label>
+                                <input type="text" class="form-control" id="table_id" name="table_id" required readonly>
+                            </div>
                             <div class="mb-3">
                                 <label for="table_code">Table Code</label>
-                                <input type="text" class="form-control" id="table_code" required disabled>
+                                <input type="text" class="form-control" id="table_code"  required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="table_name">Table Name</label>
-                                <input type="text" class="form-control" id="table_name" required disabled>
+                                <input type="text" class="form-control" id="table_name" required readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="seat">Seats</label>
@@ -149,6 +168,17 @@
 @endsection
 
 @section('script')
+<!-- include FilePond library -->
+<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+<!-- include FilePond plugins -->
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+
+<!-- include FilePond jQuery adapter -->
+<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+
+{{-- moment.js --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script src="{{ asset('user/enchant/dist/enchanter.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 
@@ -177,6 +207,7 @@
             success : (res) => {
                 $("#table_name").val(res.data.table_name)
                 $("#table_code").val(res.data.table_code)
+                $("#table_id").val(res.data.id)
             }
         })
         $('#modal').modal('show');

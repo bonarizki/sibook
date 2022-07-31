@@ -7,10 +7,11 @@
 
     @include('master.user.include.header')
 
+    @yield('css')
+
 </head>
 
 <body>
-
     <div class="container" >
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -23,14 +24,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" id="home" aria-current="page" href="href="{{ url('/') }}">Home</a>
+                            <a class="nav-link" id="home" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">About Us</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav d-flex">
-                        @auth\
+                        @auth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,12 +65,12 @@
 
     </main>
 
-    <footer class="text-muted py-5">
+    <footer class="text-muted py-5 mt-auto" >
         <div class="container">
             <p class="float-end mb-1">
                 <a href="#">Back to top</a>
             </p>
-            <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p class="mb-1">example is &copy; Bootstrap, but please download and customize it for yourself!</p>
             <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
                     href="../getting-started/introduction/">getting started guide</a>.</p>
         </div>

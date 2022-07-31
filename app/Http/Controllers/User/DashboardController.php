@@ -16,7 +16,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $tables = Table::all();
+        $tables = Table::with('Order')->get();
         $categories = Category::with('Menu')->get();
         return view('user.index',compact('tables','categories'));
     }
@@ -30,6 +30,7 @@ class DashboardController extends Controller
     {
         DB::transaction(function () use($request) {
             $order = Order::create([
+                "table_id" => $request->table_id,
                 "seats" => $request->seats,
                 "hours" => $request->hours,
                 "booking_code" => "WTSH". Str::random(10),

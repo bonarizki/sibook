@@ -12,4 +12,12 @@ class Detail extends Model
 
     protected $fillable = [];
     protected $guarded = [];
+    protected $with = [
+        "Menu"
+    ];
+
+    public function Menu()
+    {
+        return $this->hasOne(Menu::class,'id','menu_id');
+    }
 }

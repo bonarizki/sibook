@@ -113,7 +113,7 @@
             {{-- @endif --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('archive') }}" id="management-archive">
+                <a class="nav-link collapsed" href="{{ url('order') }}" id="management-order">
                     <i class="bi bi-grid"></i>
                     <span>Order</span>
                 </a>

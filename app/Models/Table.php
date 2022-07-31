@@ -15,4 +15,9 @@ class Table extends Model
         'table_code',
         'table_name'
     ];
+
+    public function Order()
+    {
+        return $this->hasOne(Order::class,'table_id','id')->latest();
+    }
 }
