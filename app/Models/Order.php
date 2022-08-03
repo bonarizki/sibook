@@ -22,16 +22,16 @@ class Order extends Model
 
     public function Detail()
     {
-        return $this->hasMany(Detail::class,'order_id','id');
+        return $this->hasMany(Detail::class,'order_id','id')->withTrashed();
     }
 
     public function Table()
     {
-        return $this->hasOne(Table::class,'id','table_id');
+        return $this->hasOne(Table::class,'id','table_id')->withTrashed();
     }
 
     public function User()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->hasOne(User::class,'id','user_id')->withTrashed();
     }
 }

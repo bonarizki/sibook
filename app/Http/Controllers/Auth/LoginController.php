@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\RegisterEvent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\auth\LoginRequest;
 use App\Http\Requests\auth\ChangePasswordRequest;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
+use App\Http\Requests\User\RegisterRequest;
+use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
      /**
@@ -54,5 +57,21 @@ class LoginController extends Controller
         User::find($id)
         ->update(["password" => bcrypt("defaultpass123")]);
         return response()->json(["status"=>"success","message"=>"Password Reset"]); 
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        DB::transaction(function () use($request){
+            
+            $request->merge([
+                "password" => bcrypt($request->password)
+            ]);
+
+            $data = User::create($request->except('_token','re_password'));
+    
+            event(new RegisterEvent($data));
+        });
+
+        return redirect('login')->with('register_success','Register Success! ');
     }
 }

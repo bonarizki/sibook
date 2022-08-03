@@ -13,14 +13,44 @@
 
 @section('content')
 <section class="py-5 text-center container">
-    <div class="row py-lg-5">
+    {{-- <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">WOTISH</h1>
             <h1 class="fw-light">COFFE & EATERY</h1>
-            <p class="lead text-muted">@auth Hi, {{ Auth::user()->name }} @endauth you can order your food and table now</p>
+            <p class="lead text-muted">@auth Hi, {{ Auth::user()->name }} @endauth you can order your food and table
+    now</p>
+    </div>
+    </div> --}}
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="user/img/img-1.jpeg" class="d-block w-100" height="500px" width="100%" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="user/img/img-2.jpeg" class="d-block w-100" height="500px" width="100%" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="user/img/img-3.jpeg" class="d-block w-100" height="500px" width="100%" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="user/img/img-4.jpeg" class="d-block w-100" height="500px" width="100%" alt="...">
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </section>
+
+
 
 <div class="album py-2 bg-light">
     <div class="container">
@@ -28,18 +58,12 @@
             @foreach ($tables as $table)
             <div class="col">
                 <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 1"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>{{ $table->table_code }}</title>
-                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                            dy=".3em">{{ $table->table_name }}</text>
-                    </svg>
+                    <img src="user/img/table-image.jpg" alt="" class="bd-placeholder-img card-img-top" width="100%" height="225">
                     <div class="card-body">
                         <div class="d-flex justify-content-center align-items-center">
                             @if ($table->Order == null || $table->Order->status == 'done' )
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="cekAuthUser('{{ $table->id }}')">Book</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="cekAuthUser('{{ $table->id }}')">Book {{ $table->table_name }}</button>
                                 </div>
                             @else
                                 <div class="btn-group">

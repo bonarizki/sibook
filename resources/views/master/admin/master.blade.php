@@ -74,7 +74,7 @@
             <li class="nav-heading">Menu</li>
 
             <li class="nav-item" >
-                <a class="nav-link collapsed" href="{{ url('/') }}" id="dashboard">
+                <a class="nav-link collapsed" href="{{ url('admin-dashboard') }}" id="dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>

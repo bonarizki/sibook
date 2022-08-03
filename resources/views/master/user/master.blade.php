@@ -27,7 +27,7 @@
                             <a class="nav-link" id="home" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="{{ url('about-us') }}">About Us</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav d-flex">
@@ -40,7 +40,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{{ url('status') }}">Status</a></li>
                                     <li><a class="dropdown-item" href="{{ url('logout') }}">Logout</a></li>
-                                    <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                                    {{-- <li><a class="dropdown-item" href="#">Reset Password</a></li> --}}
                                 </ul>
                             </li>
                         @else
@@ -70,9 +70,9 @@
             <p class="float-end mb-1">
                 <a href="#">Back to top</a>
             </p>
-            <p class="mb-1">example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                    href="../getting-started/introduction/">getting started guide</a>.</p>
+            <p class="mb-1"><b>Alamat :<br>Kompleg Bulog, Jl. Raya Pos Pengumben Selatan, RT.5/RW.6,</b></p>
+            <p class="mb-1"><b>South Sukabumi, Kebon Jeruk, Suka bumi, Jakarta 11560<br>Phone Admin :<br>082145104751</b><br></p>
+            <p class="mb-1"><b>Email:<br>wotishmanagement@gmail.com</b><br></p>
         </div>
     </footer>
 

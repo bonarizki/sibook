@@ -25,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('table-detail/{table}/edit', [DashboardController::class, 'detailTable']);
 Route::post('booking', [DashboardController::class, 'booking']);
+Route::get('about-us', function () {
+    return view('user.aboutUs');
+});
 
 
 Route::get('reset-pass/{id}', [LoginController::class, 'resetPass']);
@@ -35,7 +38,9 @@ Route::post('upload-transfer', [StatusController::class, 'update']);
 
 Route::middleware(['ifauth'])->group(function () {
     Route::view('login', 'auth.login');
+    Route::view('register', 'auth.register');
     Route::post('login', [LoginController::class, 'authenticate']);
+    Route::post('register', [LoginController::class, 'register']);
 });
 
 Route::middleware(['auth.admin'])->group(function () {
